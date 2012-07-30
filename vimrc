@@ -7,6 +7,9 @@ else
 	colorscheme leo 
 endif
 
+set cursorline
+hi CursorLine term=underline cterm=underline gui=underline
+
 let mapleader=","
 set nocompatible
 set encoding=utf-8
@@ -24,6 +27,7 @@ set autoindent
 set number
 set smartcase
 set pastetoggle=<F2>
+set clipboard=unnamed
 
 map <up> <nop>
 map <down> <nop>
