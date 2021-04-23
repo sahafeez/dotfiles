@@ -3,21 +3,23 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
-#add 3rd party stuff to default path
-#PATH=$PATH:~/bin:/usr/local/bin:/usr/local/sbin:/usr/local/opt/python3.8/bin:~/Library/Python/3.8/bin:/
-#PATH=~/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:/opt/homebrew/bin/python3:$PATH
-#export PATH
-
+#add correct homebrew path based on CPU type
 CPU=$(uname -p)
 if [[ "$CPU" == "arm" ]]; then
-   export PATH="/opt/homebrew/bin:$PATH"
+   export PATH=/opt/homebrew/bin:$PATH
    export EDITOR=/opt/homebrew/bin/vim
    export VISUAL=/opt/homebrew/bin/vim
  else 
-   export PATH="/usr/local/bin:$PATH"
+   export PATH=/usr/local/bin:$PATH
    export EDITOR=/usr/local/bin/vim
    export VISUAL=/usr/local/bin/vim
 fi
+
+#add my scripts to default path
+export PATH=~/bin:$PATH
+
+#clean up dups in path cause by nested shells/tmux
+export PATH=$(printf %s "$PATH"| awk -vRS=: -vORS= '!a[$0]++ {if (NR>1) printf(":"); printf("%s", $0) }' );
 
 #load bash completion
 if [ -f $(brew --prefix)/etc/profile.d/bash_completion.sh ]; then
@@ -25,9 +27,6 @@ if [ -f $(brew --prefix)/etc/profile.d/bash_completion.sh ]; then
 fi
 
 #set hints for compiler
-#export ARCHFLAGS="-arch x86_64"
-#export ARCHFLAGS="-arch arm64"
-
 if [[ "$CPU" == "arm" ]]; then
    export ARCHFLAGS="-arch arm64"
  else
@@ -53,15 +52,15 @@ POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
 source  /opt/homebrew/lib/python3.9/site-packages/powerline/bindings/bash/powerline.sh
 
-#color ls
+#old ls tweaks for systems without ls-go
 #export CLICOLOR=1
 #export export LSCOLORS=ExFxBxDxCxegedabagacad
 
 #vim bindings
 set -o vi
 
+#config for broot tool
 source /Users/sah/.config/broot/launcher/bash/br
 
-#[ -z "$TMUX"  ] && { tmux attach || tmux new-session && exit;}
+# check if there is a tmux session, connect if there is otherwise start new one
 [ -z "$TMUX"  ] && {  tmux new-session && exit;}
-
