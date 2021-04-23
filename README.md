@@ -1,3 +1,3 @@
-updated to MacOS 11.1 
+updated to MacOS 11.x
 python3 for powerline
 
