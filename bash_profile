@@ -6,11 +6,11 @@ fi
 #add correct homebrew path based on CPU type
 CPU=$(uname -p)
 if [[ "$CPU" == "arm" ]]; then
-   export PATH=/opt/homebrew/bin:$PATH
+   export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
    export EDITOR=/opt/homebrew/bin/vim
    export VISUAL=/opt/homebrew/bin/vim
  else 
-   export PATH=/usr/local/bin:$PATH
+   export PATH=/usr/local/bin:/usr/local/sbin:$PATH
    export EDITOR=/usr/local/bin/vim
    export VISUAL=/usr/local/bin/vim
 fi
@@ -34,7 +34,8 @@ if [[ "$CPU" == "arm" ]]; then
 fi
 
 #set terminal stuff correct for tmux
-export TERM=xterm-256color
+#export TERM=xterm-256color
+export TERM=tmux-256color
 export LC_CTYPE=en_US.UTF-8
 
 #shut up apple
@@ -43,6 +44,7 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 #change default commands to something better
 alias cat='bat'
 alias ping='prettyping --nolegend'
+alias p='prettyping --nolegend'
 alias top='htop'
 alias ls='ls-go -alkSi'
 
