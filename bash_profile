@@ -41,12 +41,10 @@ export LC_CTYPE=en_US.UTF-8
 #shut up apple
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-#change default commands to something better
-alias cat='bat'
-alias ping='prettyping --nolegend'
-alias p='prettyping --nolegend'
-alias top='htop'
-alias ls='ls-go -alkSi'
+#source aliases in .bash_aliases
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
 
 #powerline for bash/tmux/vim
 powerline-daemon -q
