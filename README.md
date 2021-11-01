@@ -1,3 +1,2 @@
-updated to MacOS 11.x
-python3 for powerline
-
+my .files for macos setup
+bash, tmux, vim
