@@ -25,6 +25,15 @@ export PATH=$(printf %s "$PATH"| awk -vRS=: -vORS= '!a[$0]++ {if (NR>1) printf("
 if [ -f $(brew --prefix)/etc/profile.d/bash_completion.sh ]; then
   . $(brew --prefix)/etc/profile.d/bash_completion.sh
 fi
+#sort for window size changes
+shopt -s checkwinsize
+
+#bash history clean up
+export HISTCONTROL=ignoredups
+export HISTCONTROL=ignoreboth
+
+#colour in grep
+export GREP_OPTIONS=' — color=auto'
 
 #set hints for compiler
 if [[ "$CPU" == "arm" ]]; then
