@@ -7,3 +7,8 @@ function cl() {
     builtin cd "${DIR}" && \
         ls-go -alkSi   
 }
+
+mcd () {
+    mkdir -p $1
+    cd $1
+}
