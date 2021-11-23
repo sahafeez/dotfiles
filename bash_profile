@@ -33,7 +33,7 @@ export HISTCONTROL=ignoredups
 export HISTCONTROL=ignoreboth
 
 #colour in grep
-export GREP_OPTIONS=' — color=auto'
+export GREP_OPTIONS='--colour'
 
 #set hints for compiler
 if [[ "$CPU" == "arm" ]]; then
