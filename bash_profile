@@ -9,12 +9,14 @@ if [[ "$CPU" == "arm" ]]; then
    export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
    export EDITOR=/opt/homebrew/bin/vim
    export VISUAL=/opt/homebrew/bin/vim
-   POWERLINEPATH=/opt/homebrew/lib/python3.9/site-packages/powerline/bindings/bash/powerline.sh
+   export PLBASH=/opt/homebrew/lib/python3.9/site-packages/powerline/bindings/bash/powerline.sh
+   export PLTMUX=/opt/homebrew/lib/python3.9/site-packages/powerline/bindings/tmux/powerline.conf
  else 
-   export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+   export PATH=/usr/local/bin:/usr/local/sbin:$PATH   
    export EDITOR=/usr/local/bin/vim
    export VISUAL=/usr/local/bin/vim
-   POWERLINEPATH=/usr/local/lib/python3.9/site-packages/powerline/bindings/bash/powerline.sh
+   export PLBASH=/usr/local/lib/python3.9/site-packages/powerline/bindings/bash/powerline.sh
+   export PLTMUX=/usr/local/lib/python3.9/site-packages/powerline/bindings/tmux/powerline.conf
 fi
 
 #add my scripts to default path
@@ -66,7 +68,7 @@ powerline-daemon -q
 POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
 #source  /opt/homebrew/lib/python3.9/site-packages/powerline/bindings/bash/powerline.sh
-source $POWERLINEPATH
+source $PLBASH
 
 #old ls tweaks for systems without ls-go
 #export CLICOLOR=1
