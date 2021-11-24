@@ -47,8 +47,8 @@ if [[ "$CPU" == "arm" ]]; then
 fi
 
 #set terminal stuff correct for tmux
-#export TERM=xterm-256color
-export TERM=tmux-256color
+export TERM=xterm-256color
+#export TERM=tmux-256color
 export LC_CTYPE=en_US.UTF-8
 
 #shut up apple
