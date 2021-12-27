@@ -1,56 +1,70 @@
-execute pathogen#infect()
-syntax on
-filetype plugin indent on 
+call plug#begin('~/.vim/plugins/')
+ Plug 'tpope/vim-surround'
+ Plug 'tpope/vim-fugitive'
+ Plug 'tpope/vim-eunuch'
+ Plug 'scrooloose/nerdtree'
+ Plug 'christoomey/vim-tmux-navigator'
+ Plug 'junegunn/fzf.vim'
+ Plug 'junegunn/fzf'
+ Plug '/opt/homebrew/lib/python3.9/site-packages/powerline/bindings/vim'
+call plug#end()
 
 if has('gui_running')
     set background=light
-else
+    set guifont=Menlo\ for\ Powerline:h14
+  else
     set background=dark
 endif
-
-set rtp+=/opt/homebrew/lib/python3.9/site-packages/powerline/bindings/bindings/vim
 
 set cursorline
 hi CursorLine term=underline cterm=underline gui=underline
 
 let mapleader=","
+set nocompatible
 set encoding=utf-8
-set showcmd   
 set nowrap
 set linebreak
-set tabstop=2 shiftwidth=2  
-set expandtab              
+set tabstop=2
+set shiftwidth=2
+set expandtab
 set backspace=indent,eol,start
-set hlsearch      
-set incsearch    
-set ignorecase  
-set smartcase 
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
 set tabstop=4
 set autoindent
 set number
 set smartcase
-set clipboard=unnamed
 set t_Co=256
+set list
+set listchars=tab:▸\ ,trail:·
+set wildmode=longest:full,full
+set laststatus=2
 
- 
 if ! has('gui_running')
    set ttimeoutlen=10
+   set noshowmode
    augroup FastEscape
       autocmd!
       au InsertEnter * set timeoutlen=0
       au InsertLeave * set timeoutlen=1000
    augroup END
 endif
- 
-set laststatus=2 
-set guifont=Inconsolata\ for\ Powerline:h14
-set noshowmode 
+
+let $FZF_DEFAULT_OPTS .= ' --inline-info'
+if exists('$TMUX')
+let g:fzf_layout = { 'tmux': '-p90%,60%' }
+else
+  let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+endif
 
 map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
-map <leader>f :NERDTreeToggle<CR>
+map <leader>f :FZF<CR>
+map <leader>vr :source ~/.vimrc
 
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
@@ -66,7 +80,8 @@ command -nargs=+ MapToggle call MapToggle(<f-args>)
 
 MapToggle <F1> hlsearch
 MapToggle <F2> wrap
-MapToggle <F3> list 
+MapToggle <F3> list
 MapToggle <F4> ignorecase
 MapToggle <F5> paste
 set pastetoggle=<F5>
+MapToggle <F6> spell

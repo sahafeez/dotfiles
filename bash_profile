@@ -3,21 +3,21 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
-#add correct homebrew path based on CPU type
+#add correct homebrew path based on CPU type and export/start the right stuff
 CPU=$(uname -p)
 if [[ "$CPU" == "arm" ]]; then
-   export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
-   export EDITOR=/opt/homebrew/bin/vim
-   export VISUAL=/opt/homebrew/bin/vim
-   export PLBASH=/opt/homebrew/lib/python3.9/site-packages/powerline/bindings/bash/powerline.sh
-   export PLTMUX=/opt/homebrew/lib/python3.9/site-packages/powerline/bindings/tmux/powerline.conf
- else 
-   export PATH=/usr/local/bin:/usr/local/sbin:$PATH   
-   export EDITOR=/usr/local/bin/vim
-   export VISUAL=/usr/local/bin/vim
-   export PLBASH=/usr/local/lib/python3.9/site-packages/powerline/bindings/bash/powerline.sh
-   export PLTMUX=/usr/local/lib/python3.9/site-packages/powerline/bindings/tmux/powerline.conf
+ export BREWPATH=/opt/homebrew
+ export ARCHFLAGS="-arch arm64"
+else
+ export BREWPATH=/usr/local
+ export ARCHFLAGS="-arch x86_64"
 fi
+
+export PATH=$BREWPATH/bin:$BREWPATH/sbin:$PATH
+export EDITOR=$BREWPATH/bin/vim
+export VISUAL=$BREWPATH/bin/vim
+export PLBASH=$BREWPATH/lib/python3.9/site-packages/powerline/bindings/bash/powerline.sh
+export PLTMUX=$BREWPATH/lib/python3.9/site-packages/powerline/bindings/tmux/powerline.conf
 
 #add my scripts to default path
 export PATH=~/bin:$PATH
@@ -29,6 +29,7 @@ export PATH=$(printf %s "$PATH"| awk -vRS=: -vORS= '!a[$0]++ {if (NR>1) printf("
 if [ -f $(brew --prefix)/etc/profile.d/bash_completion.sh ]; then
   . $(brew --prefix)/etc/profile.d/bash_completion.sh
 fi
+
 #sort for window size changes
 shopt -s checkwinsize
 
@@ -39,15 +40,9 @@ export HISTCONTROL=ignoreboth
 #colour in grep
 export GREP_OPTIONS='--colour'
 
-#set hints for compiler
-if [[ "$CPU" == "arm" ]]; then
-   export ARCHFLAGS="-arch arm64"
- else
-   export ARCHFLAGS="-arch x86_64"
-fi
-
 #set terminal stuff correct for tmux
 export TERM=xterm-256color
+
 #export TERM=tmux-256color
 export LC_CTYPE=en_US.UTF-8
 
@@ -58,6 +53,7 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
+
 #source bash_functions
 if [ -e ~/.bash_functions ]; then
     source ~/.bash_functions
@@ -67,12 +63,18 @@ fi
 powerline-daemon -q
 POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
-#source  /opt/homebrew/lib/python3.9/site-packages/powerline/bindings/bash/powerline.sh
 source $PLBASH
 
 #old ls tweaks for systems without ls-go
 #export CLICOLOR=1
 #export export LSCOLORS=ExFxBxDxCxegedabagacad
+
+#fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+  export FZF_DEFAULT_OPTS='-m --height 50% --border'
+fi
 
 #vim bindings
 set -o vi
