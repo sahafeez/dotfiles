@@ -64,7 +64,8 @@ map <down> <nop>
 map <left> <nop>
 map <right> <nop>
 map <leader>f :FZF<CR>
-map <leader>vr :source ~/.vimrc
+map <leader>vr :source ~/.vimrc<CR>
+map <leader>n :NERDTreeToggle<CR>
 
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
