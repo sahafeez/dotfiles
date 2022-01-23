@@ -17,5 +17,5 @@ function mcd () {
 
 #crazy match for music files dir looking for bad naming as i am ocd about this
 function ckm () {
-    find . | grep -E "(\b \b[a-z][^/]*$|\)\s+\(|[[:space:]]{2,}|[[:blank:]]\.[[:alnum:]]{3}|\Ft\.[[:alnum:]]|7[\']|10[\']|12[\'])"
+    find . | grep -E "(\b \b[a-z][^/]*$|\)\s+\(|[[:space:]]{2,}|[[:blank:]]\.[[:alnum:]]{3}|\Ft\.[[:alnum:]]|7[\']|10[\']|12[\']|[[:blank:]]$)"
 }
