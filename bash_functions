@@ -5,7 +5,7 @@ function cl() {
                 DIR=$HOME;
     fi;
     builtin cd "${DIR}" && \
-        ls-go -alkSi   
+        ls-go -alkSn
 }
 
 mcd () {
