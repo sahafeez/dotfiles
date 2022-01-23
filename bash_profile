@@ -13,9 +13,14 @@ else
  export ARCHFLAGS="-arch x86_64"
 fi
 
+#add homebrew to path
 export PATH=$BREWPATH/bin:$BREWPATH/sbin:$PATH
+
+#set old school editor hints
 export EDITOR=$BREWPATH/bin/vim
 export VISUAL=$BREWPATH/bin/vim
+
+#setup path powerline for bash and tmux 
 export PLBASH=$BREWPATH/lib/python3.9/site-packages/powerline/bindings/bash/powerline.sh
 export PLTMUX=$BREWPATH/lib/python3.9/site-packages/powerline/bindings/tmux/powerline.conf
 
@@ -46,7 +51,7 @@ export TERM=xterm-256color
 #export TERM=tmux-256color
 export LC_CTYPE=en_US.UTF-8
 
-#shut up apple
+#shut up apple, i am not switching to zsh
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 #source aliases in .bash_aliases
