@@ -38,9 +38,10 @@ fi
 #sort for window size changes
 shopt -s checkwinsize
 
-#bash history clean up
+#bash history clean up & append
 export HISTCONTROL=ignoredups
 export HISTCONTROL=ignoreboth
+shopt -s histappend
 
 #colour in grep
 export GREP_OPTIONS='--colour'
@@ -82,10 +83,13 @@ if type rg &> /dev/null; then
 fi
 
 #vim bindings
-set -o vi
+#set -o vi
+set editting-mode vi
+set keymap vi-command
 
 #config for broot tool
 source /Users/sah/.config/broot/launcher/bash/br
 
 # check if there is a tmux session, connect if there is otherwise start new one
 [ -z "$TMUX"  ] && {  tmux new-session && exit;}
+
