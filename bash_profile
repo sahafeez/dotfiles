@@ -21,8 +21,8 @@ export EDITOR=$BREWPATH/bin/vim
 export VISUAL=$BREWPATH/bin/vim
 
 #setup path powerline for bash and tmux 
-export PLBASH=$BREWPATH/lib/python3.9/site-packages/powerline/bindings/bash/powerline.sh
-export PLTMUX=$BREWPATH/lib/python3.9/site-packages/powerline/bindings/tmux/powerline.conf
+export PLBASH=$BREWPATH/lib/python3.10/site-packages/powerline/bindings/bash/powerline.sh
+export PLTMUX=$BREWPATH/lib/python3.10/site-packages/powerline/bindings/tmux/powerline.conf
 
 #add my scripts to default path
 export PATH=~/bin:$PATH

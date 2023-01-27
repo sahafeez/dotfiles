@@ -6,7 +6,7 @@ call plug#begin('~/.vim/plugins/')
  Plug 'christoomey/vim-tmux-navigator'
  Plug 'junegunn/fzf.vim'
  Plug 'junegunn/fzf'
- Plug '/opt/homebrew/lib/python3.9/site-packages/powerline/bindings/vim'
+ Plug '/opt/homebrew/lib/python3.10/site-packages/powerline/bindings/vim'
 call plug#end()
 
 if has('gui_running')
