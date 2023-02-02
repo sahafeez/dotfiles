@@ -1,3 +1,4 @@
+let $BPATH=$BREWPATH
 call plug#begin('~/.vim/plugins/')
  Plug 'tpope/vim-surround'
  Plug 'tpope/vim-fugitive'
@@ -6,12 +7,13 @@ call plug#begin('~/.vim/plugins/')
  Plug 'christoomey/vim-tmux-navigator'
  Plug 'junegunn/fzf.vim'
  Plug 'junegunn/fzf'
- Plug '/opt/homebrew/lib/python3.10/site-packages/powerline/bindings/vim'
+ Plug '$BPATH/lib/python3.10/site-packages/powerline/bindings/vim'
+ Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 if has('gui_running')
     set background=light
-    set guifont=Menlo\ for\ Powerline:h14
+    set guifont=Hack\ Regular\ Nerd\ Font\ Complete:h12
   else
     set background=dark
 endif

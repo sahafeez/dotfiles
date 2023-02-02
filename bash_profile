@@ -12,6 +12,7 @@ else
  export BREWPATH=/usr/local
  export ARCHFLAGS="-arch x86_64"
 fi
+export $CPU
 
 #add homebrew to path
 export PATH=$BREWPATH/bin:$BREWPATH/sbin:$PATH
