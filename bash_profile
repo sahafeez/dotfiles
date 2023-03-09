@@ -84,7 +84,6 @@ if type rg &> /dev/null; then
 fi
 
 #vim bindings
-#set -o vi
 set editting-mode vi
 set keymap vi-command
 
@@ -93,4 +92,3 @@ source /Users/sah/.config/broot/launcher/bash/br
 
 # check if there is a tmux session, connect if there is otherwise start new one
 [ -z "$TMUX"  ] && {  tmux new-session && exit;}
-
