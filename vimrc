@@ -7,7 +7,7 @@ call plug#begin('~/.vim/plugins/')
  Plug 'christoomey/vim-tmux-navigator'
  Plug 'junegunn/fzf.vim'
  Plug 'junegunn/fzf'
- Plug '$BPATH/lib/python3.10/site-packages/powerline/bindings/vim'
+ Plug '$HOME/.local/pipx/venvs/powerline-status/lib/python3.12/site-packages/powerline/bindings/vim'
  Plug 'ryanoasis/vim-devicons'
 call plug#end()
 

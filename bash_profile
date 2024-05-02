@@ -1,4 +1,4 @@
-# Source global definitions
+#Source global definitions
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
@@ -17,13 +17,16 @@ export $CPU
 #add homebrew to path
 export PATH=$BREWPATH/bin:$BREWPATH/sbin:$PATH
 
+#add .local to path
+export PATH=$HOME/.local/bin:$PATH
+
 #set old school editor hints
 export EDITOR=$BREWPATH/bin/vim
 export VISUAL=$BREWPATH/bin/vim
 
 #setup path powerline for bash and tmux 
-export PLBASH=$BREWPATH/lib/python3.10/site-packages/powerline/bindings/bash/powerline.sh
-export PLTMUX=$BREWPATH/lib/python3.10/site-packages/powerline/bindings/tmux/powerline.conf
+#export PLBASH=$BREWPATH/lib/python3.12/site-packages/powerline/bindings/bash/powerline.sh
+#export PLTMUX=$BREWPATH/lib/python3.12/site-packages/powerline/bindings/tmux/powerline.conf
 
 #add my scripts to default path
 export PATH=~/bin:$PATH
@@ -66,11 +69,22 @@ if [ -e ~/.bash_functions ]; then
     source ~/.bash_functions
 fi
 
+#setup path powerline for bash and tmux 
+export PLBASH=$HOME/.local/pipx/venvs/powerline-status/lib/python3.12/site-packages/powerline/bindings/bash/powerline.sh
+export PLTMUX=$HOME/.local/pipx/venvs/powerline-status/lib/python3.12/site-packages/powerline/bindings/tmux/powerline.conf
+
+if [ -f $PLBASH ]; then
+   $HOME/.local/bin/powerline-daemon -q
+    POWERLINE_BASH_CONTINUATION=1
+    POWERLINE_BASH_SELECT=1
+    source $PLBASH
+fi
+
 #powerline for bash/tmux/vim
-powerline-daemon -q
-POWERLINE_BASH_CONTINUATION=1
-POWERLINE_BASH_SELECT=1
-source $PLBASH
+#powerline-daemon -q
+#POWERLINE_BASH_CONTINUATION=1
+#POWERLINE_BASH_SELECT=1
+#source $PLBASH
 
 #old ls tweaks for systems without ls-go
 #export CLICOLOR=1
