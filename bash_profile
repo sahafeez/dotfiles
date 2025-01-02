@@ -24,10 +24,6 @@ export PATH=$HOME/.local/bin:$PATH
 export EDITOR=$BREWPATH/bin/vim
 export VISUAL=$BREWPATH/bin/vim
 
-#setup path powerline for bash and tmux 
-#export PLBASH=$BREWPATH/lib/python3.12/site-packages/powerline/bindings/bash/powerline.sh
-#export PLTMUX=$BREWPATH/lib/python3.12/site-packages/powerline/bindings/tmux/powerline.conf
-
 #add my scripts to default path
 export PATH=~/bin:$PATH
 
@@ -80,22 +76,16 @@ if [ -f $PLBASH ]; then
     source $PLBASH
 fi
 
-#powerline for bash/tmux/vim
-#powerline-daemon -q
-#POWERLINE_BASH_CONTINUATION=1
-#POWERLINE_BASH_SELECT=1
-#source $PLBASH
-
 #old ls tweaks for systems without ls-go
 #export CLICOLOR=1
 #export export LSCOLORS=ExFxBxDxCxegedabagacad
 
 #fzf
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-if type rg &> /dev/null; then
-  export FZF_DEFAULT_COMMAND='rg --files'
-  export FZF_DEFAULT_OPTS='-m --height 50% --border'
-fi
+#[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+#if type rg &> /dev/null; then
+#  export FZF_DEFAULT_COMMAND='rg --files'
+#  export FZF_DEFAULT_OPTS='-m --height 50% --border'
+#fi
 
 #vim bindings
 set editting-mode vi
@@ -105,4 +95,4 @@ set keymap vi-command
 source /Users/sah/.config/broot/launcher/bash/br
 
 # check if there is a tmux session, connect if there is otherwise start new one
-[ -z "$TMUX"  ] && {  tmux new-session && exit;}
+[ -z "$TMUX"  ] && {  tmux new-session && exit;} ; hyfetch
