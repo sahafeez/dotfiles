@@ -1,4 +1,4 @@
-#change default commands to something better
+#alias - change default commands to something better
 alias cat='bat'
 alias ping='prettyping --nolegend'
 alias p='prettyping --nolegend'
@@ -10,4 +10,4 @@ alias gc='git commit -m'
 alias diff='colordiff'
 alias du='duf'
 alias ports='netstat -tulanp'
-alias python='python3'
+alias tmux='tmux -2'
