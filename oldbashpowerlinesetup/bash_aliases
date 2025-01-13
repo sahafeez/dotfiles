@@ -1,0 +1,13 @@
+#change default commands to something better
+alias cat='bat'
+alias ping='prettyping --nolegend'
+alias p='prettyping --nolegend'
+alias top='htop'
+alias ls='ls-go -alkSn'
+alias gh='history|grep'
+alias cpv='rsync -ah --info=progress2'
+alias gc='git commit -m'
+alias diff='colordiff'
+alias du='duf'
+alias ports='netstat -tulanp'
+alias python='python3'
