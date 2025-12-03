@@ -36,7 +36,7 @@ set ignorecase
 set smartcase
 set tabstop=4
 set autoindent
-set number
+set number relativenumber
 set smartcase
 set t_Co=256
 set list

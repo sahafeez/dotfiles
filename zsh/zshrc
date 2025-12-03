@@ -8,8 +8,9 @@ source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 #stuff
 export EDITOR='vim'
 export ARCHFLAGS="-arch $(uname -m)"
-#export TERM=xterm-256color
 export LC_CTYPE=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
 #path for homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -20,10 +21,29 @@ export PATH=~/bin:~/.local/bin:$PATH
 #alias - change default commands to something better
 source ~/.aliasrc
 
-
 #functions
 source ~/.functionsrc
 
+autoload -Uz compinit && compinit
+
+# pip zsh completion start
+#compdef -P pip[0-9.]#
+__pip() {
+  compadd $( COMP_WORDS="$words[*]" \
+             COMP_CWORD=$((CURRENT-1)) \
+             PIP_AUTO_COMPLETE=1 $words[1] 2>/dev/null )
+}
+if [[ $zsh_eval_context[-1] == loadautofunc ]]; then
+  # autoload from fpath, call function directly
+  __pip "$@"
+else
+  # eval/source/. command, register function for later
+  compdef __pip -P 'pip[0-9.]#'
+fi
+# pip zsh completion end
+
 #check if there is a tmux session, connect if there is otherwise start new one
-[ -z "$TMUX"  ] && {  tmux new-session && exit;} ; hyfetch
+[ -z "$TMUX"  ] && {  tmux new-session && exit;} ; fastfetch 
+
+
 
