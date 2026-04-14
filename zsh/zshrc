@@ -2,6 +2,7 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
 source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -15,8 +16,15 @@ export LC_ALL=en_US.UTF-8
 #path for homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-#my paths
-export PATH=~/bin:~/.local/bin:$PATH
+# set PATH so it includes user private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
 
 #alias - change default commands to something better
 source ~/.aliasrc
@@ -27,7 +35,7 @@ source ~/.functionsrc
 autoload -Uz compinit && compinit
 
 # pip zsh completion start
-#compdef -P pip[0-9.]#
+# compdef -P pip[0-9.]#
 __pip() {
   compadd $( COMP_WORDS="$words[*]" \
              COMP_CWORD=$((CURRENT-1)) \
@@ -44,6 +52,3 @@ fi
 
 #check if there is a tmux session, connect if there is otherwise start new one
 [ -z "$TMUX"  ] && {  tmux new-session && exit;} ; fastfetch 
-
-
-
